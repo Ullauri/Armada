@@ -7,6 +7,7 @@ import org.andengine.util.color.Color;
 
 
 public final class Bullet extends Rectangle {
+    private PhysicsHandler ph;
 
 
     Bullet(float x, float y, float size, VertexBufferObjectManager vertexBufferObjectManager, double damage, Color color) {
@@ -17,8 +18,12 @@ public final class Bullet extends Rectangle {
         super(x, y, width, height, vertexBufferObjectManager);
         this.setColor(color);
 
-        PhysicsHandler ph = new PhysicsHandler(this);
+        ph = new PhysicsHandler(this);
         this.registerUpdateHandler(ph);
+    }
+
+    public void setVelocityX(float velocityX) {
+        ph.setVelocityX(velocityX);
     }
 
 }

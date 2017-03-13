@@ -5,8 +5,11 @@ import org.andengine.engine.Engine.EngineLock;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.scene.Scene;
 
+import java.util.Random;
+
 public final class GameUtil {
     public static final int CAMERA_WIDTH = 720, CAMERA_HEIGHT = 480;
+    private static Random random;
     private static int frameCount;
     private static int wave;
     private static Scene scene;
@@ -19,6 +22,7 @@ public final class GameUtil {
     public static void initScene(Scene pScene, EngineLock pEngineLock) {
         scene = pScene;
         engineLock = pEngineLock;
+        random = new Random();
         frameCount = 0;
         wave = 1;
     }
@@ -44,6 +48,10 @@ public final class GameUtil {
         }
     }
 
+    public static float nextFloat(float bound) {
+        return random.nextFloat() * bound;
+    }
+
     public static boolean inSync(int cycle) {
         return frameCount % cycle == 0;
     }
@@ -51,6 +59,5 @@ public final class GameUtil {
     public static boolean isOutOfBounds(float x, float y) {
         return (x < -10 || y < -10 || x > CAMERA_WIDTH + 10 || y > CAMERA_HEIGHT + 10);
     }
-
 
 }

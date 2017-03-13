@@ -23,6 +23,10 @@ public abstract class ShootingShip extends AnimatedSprite {
         this.bullets = new ArrayList<>();
     }
 
+    public void setHp(double hp) {
+        this.hp = hp;
+    }
+
     public double getHp() {
         return hp;
     }
