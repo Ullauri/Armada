@@ -26,4 +26,12 @@ public final class Bullet extends Rectangle {
         ph.setVelocityX(velocityX);
     }
 
+    public void setVelocityY(float velocityY) {
+        ph.setVelocityY(velocityY);
+    }
+
+    public void setVelocity(float velocityX, float velocityY) {
+        ph.setVelocity(velocityX, velocityY);
+    }
+
 }

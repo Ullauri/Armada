@@ -9,9 +9,10 @@ import java.util.Random;
 
 public final class GameUtil {
     public static final int CAMERA_WIDTH = 720, CAMERA_HEIGHT = 480;
-    private static Random random;
+    private static Random random = new Random();
     private static int frameCount;
     private static int wave;
+    private static PlayerShip player;
     private static Scene scene;
     private static EngineLock engineLock;
 
@@ -19,10 +20,10 @@ public final class GameUtil {
     private GameUtil() {
     }
 
-    public static void initScene(Scene pScene, EngineLock pEngineLock) {
+    public static void initScene(Scene pScene, EngineLock pEngineLock, PlayerShip pPlayer) {
         scene = pScene;
         engineLock = pEngineLock;
-        random = new Random();
+        player = pPlayer;
         frameCount = 0;
         wave = 1;
     }
@@ -37,6 +38,14 @@ public final class GameUtil {
 
     public static void detachFromScene(IEntity entity) {
         scene.detachChild(entity);
+    }
+
+    public static float[] getPlayerPosition() {
+        float[] position = new float[2];
+        position[0] = player.getX();
+        position[1] = player.getY();
+
+        return position;
     }
 
     public static void update() {
