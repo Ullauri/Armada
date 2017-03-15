@@ -10,7 +10,7 @@ import java.util.Random;
 public final class GameUtil {
     public static final int CAMERA_WIDTH = 720, CAMERA_HEIGHT = 480;
     private static Random random = new Random();
-    private static int frameCount;
+    private static int frameCount, enemyCount;
     private static int wave;
     private static PlayerShip player;
     private static Scene scene;
@@ -25,6 +25,7 @@ public final class GameUtil {
         engineLock = pEngineLock;
         player = pPlayer;
         frameCount = 0;
+        enemyCount = 0;
         wave = 1;
     }
 
@@ -33,10 +34,12 @@ public final class GameUtil {
     }
 
     public static void attatchToScene(IEntity entity) {
+        if (entity instanceof EnemyShip) enemyCount++; // ***
         scene.attachChild(entity);
     }
 
     public static void detachFromScene(IEntity entity) {
+        if (entity instanceof EnemyShip) enemyCount--; // ***
         scene.detachChild(entity);
     }
 
@@ -52,9 +55,12 @@ public final class GameUtil {
         if (frameCount >= 1500) {
             frameCount = 0;
             wave++;
-        } else {
+        } else
             frameCount++;
-        }
+    }
+
+    public static int nextInt(int bound) {
+        return random.nextInt(bound);
     }
 
     public static float nextFloat(float bound) {

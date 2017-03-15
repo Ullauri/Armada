@@ -43,4 +43,10 @@ public abstract class EnemyShip extends ShootingShip {
         }
     }
 
+    @Override
+    public String toString() {
+        return super.toString()
+                + "\ndX: " + physicsHandler.getVelocityX()
+                + "\ndY: " + physicsHandler.getVelocityY();
+    }
 }

@@ -7,7 +7,7 @@ import org.andengine.util.color.Color;
 
 
 public final class Bullet extends Rectangle {
-    private PhysicsHandler ph;
+    private PhysicsHandler physicsHandler;
 
 
     Bullet(float x, float y, float size, VertexBufferObjectManager vertexBufferObjectManager, double damage, Color color) {
@@ -18,20 +18,27 @@ public final class Bullet extends Rectangle {
         super(x, y, width, height, vertexBufferObjectManager);
         this.setColor(color);
 
-        ph = new PhysicsHandler(this);
-        this.registerUpdateHandler(ph);
+        physicsHandler = new PhysicsHandler(this);
+        this.registerUpdateHandler(physicsHandler);
     }
 
     public void setVelocityX(float velocityX) {
-        ph.setVelocityX(velocityX);
+        physicsHandler.setVelocityX(velocityX);
     }
 
     public void setVelocityY(float velocityY) {
-        ph.setVelocityY(velocityY);
+        physicsHandler.setVelocityY(velocityY);
     }
 
     public void setVelocity(float velocityX, float velocityY) {
-        ph.setVelocity(velocityX, velocityY);
+        physicsHandler.setVelocity(velocityX, velocityY);
+    }
+
+    @Override
+    public String toString() {
+        return "X: " + this.getX() + " Y: " + this.getY()
+                + " dX: " + physicsHandler.getVelocityX()
+                + " dY: " + physicsHandler.getVelocityY();
     }
 
 }

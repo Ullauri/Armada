@@ -1,34 +1,25 @@
 package com.gmail.byron.ullauri.armada;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import org.andengine.engine.camera.Camera;
-import org.andengine.engine.options.EngineOptions;
-import org.andengine.engine.options.ScreenOrientation;
-import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
-import org.andengine.entity.scene.Scene;
-import org.andengine.ui.activity.SimpleBaseGameActivity;
-
-public class MainActivity extends SimpleBaseGameActivity {
-
+public class MainActivity extends AppCompatActivity {
 
     @Override
-    public EngineOptions onCreateEngineOptions() {
-        final Camera camera = new Camera(0, 0, 700, 700);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED,
-                new RatioResolutionPolicy(700,700), camera);
-    }
+        try {
+            Thread.sleep(3000);
 
-    @Override
-    protected void onCreateResources() {
-        // TODO Auto-generated method stub
+            Intent menu = new Intent(MainActivity.this, Menu.class);
+            startActivity(menu);
 
-    }
-
-    @Override
-    protected Scene onCreateScene() {
-
-        return new Scene();
+            finish();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

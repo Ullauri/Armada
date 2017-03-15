@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Armada</string>
+
+    <string name="title_activity_menu">Menu</string>
+    <string name="text_play_button">Play</string>
+    <string name="text_scoreboard_button">Scoreboard</string>
+    <string name="text_options_button">Options</string>
+    <string name="text_about_button">About</string>
+    <string name="description_icon">icon</string>
+    <string name="title_activity_main_game">mainGameActivity</string>
+
 </resources>

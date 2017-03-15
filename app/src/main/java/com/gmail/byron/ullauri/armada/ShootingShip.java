@@ -66,4 +66,13 @@ public abstract class ShootingShip extends AnimatedSprite {
 
     public abstract void shoot();
 
+    @Override
+    public String toString() {
+        return "Fire Rate: " + FIRE_RATE
+                + "\nHP: " + hp
+                + "\nBullets: " + bullets.toString()
+                + "\nX: " + this.getX()
+                + "\nY: " + this.getY();
+    }
+
 }

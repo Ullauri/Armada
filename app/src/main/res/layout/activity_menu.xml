@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context="com.gmail.byron.ullauri.armada.Menu">
+
+
+    <ImageView
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:contentDescription="@string/description_icon" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <Button
+                android:text="@string/text_play_button"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/playButton"
+                android:onClick="onClick" />
+
+            <Button
+                android:text="@string/text_scoreboard_button"
+                android:layout_height="wrap_content"
+                android:id="@+id/scoreBoardButton"
+                android:layout_marginTop="30dp"
+                android:layout_width="130dp"
+                android:onClick="onClick" />
+
+            <Button
+                android:text="@string/text_options_button"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/optionsButton"
+                android:layout_marginTop="30dp"
+                android:onClick="onClick" />
+
+            <Button
+                android:text="@string/text_about_button"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/aboutButton"
+                android:layout_marginTop="30dp"
+                android:onClick="onClick" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
