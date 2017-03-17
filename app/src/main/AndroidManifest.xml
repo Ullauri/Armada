@@ -10,7 +10,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,10 +22,13 @@
             android:name=".Menu"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_menu"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+            android:theme="@style/MenuTheme" />
         <activity
             android:name=".MainGameActivity"
-            android:label="@string/title_activity_main_game"></activity>
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|screenSize">
+
+        </activity>
     </application>
 
 </manifest>

@@ -28,7 +28,7 @@ public class SingleShotEnemy extends EnemyShip {
         Bullet bullet = new Bullet(this.getX(), this.getY(), 9, this.getVertexBufferObjectManager(), BULLET_DAMAGE, new Color(255, 0, 0));
         float[] target = aim();
         bullet.setVelocity(target[0], target[0]);
-        super.addBullet(bullet);
+        addBullet(bullet);
         GameUtil.attatchToScene(bullet);
     }
 

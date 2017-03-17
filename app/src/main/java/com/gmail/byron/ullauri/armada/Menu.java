@@ -14,11 +14,10 @@ public class Menu extends AppCompatActivity {
 
     }
 
-    public void onClick(View v) {
+    public void startActivity(View v) {
         switch (v.getId()) {
             case R.id.playButton:
-                Intent game = new Intent(Menu.this, MainGameActivity.class);
-                startActivity(game);
+                startActivity(new Intent(Menu.this, MainGameActivity.class));
                 break;
             case R.id.scoreBoardButton:
 
@@ -33,8 +32,6 @@ public class Menu extends AppCompatActivity {
             default:
                 System.exit(1);
         }
-
-        finish();
     }
 
 }

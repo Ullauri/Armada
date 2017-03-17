@@ -20,7 +20,7 @@ public class BurstShotEnemy extends EnemyShip {
         for (int i = 0; i <= burstCount; i++) {
             Bullet bullet = new Bullet(this.getX(), this.getY(), 9, this.getVertexBufferObjectManager(), BULLET_DAMAGE, new Color(0, 0, 5));
             bullet.setVelocity(250, BURST_DIRECTIONS_Y[i]);
-            super.addBullet(bullet);
+            addBullet(bullet);
             GameUtil.attatchToScene(bullet);
         }
     }

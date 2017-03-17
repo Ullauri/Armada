@@ -37,7 +37,7 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/playButton"
-                android:onClick="onClick" />
+                android:onClick="startActivity" />
 
             <Button
                 android:text="@string/text_scoreboard_button"
@@ -45,7 +45,7 @@
                 android:id="@+id/scoreBoardButton"
                 android:layout_marginTop="30dp"
                 android:layout_width="130dp"
-                android:onClick="onClick" />
+                android:onClick="startActivity" />
 
             <Button
                 android:text="@string/text_options_button"
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/optionsButton"
                 android:layout_marginTop="30dp"
-                android:onClick="onClick" />
+                android:onClick="startActivity" />
 
             <Button
                 android:text="@string/text_about_button"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/aboutButton"
                 android:layout_marginTop="30dp"
-                android:onClick="onClick" />
+                android:onClick="startActivity" />
         </LinearLayout>
     </ScrollView>
 

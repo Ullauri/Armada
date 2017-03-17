@@ -36,10 +36,10 @@ public abstract class EnemyShip extends ShootingShip {
         }
 
         if (this.getX() > GameUtil.CAMERA_WIDTH) {
-            this.setPosition(ORIGIN_X, ORIGIN_Y);
+            setPosition(ORIGIN_X, ORIGIN_Y);
             physicsHandler.setVelocity(physicsHandler.getVelocityX() - 5,
                     physicsHandler.getVelocityY() - 5);
-            super.setHp(100);
+            setHp(100);
         }
     }
 

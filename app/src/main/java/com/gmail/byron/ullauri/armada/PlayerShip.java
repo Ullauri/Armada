@@ -31,9 +31,9 @@ public class PlayerShip extends ShootingShip {
 
     @Override
     public void shoot() {
-        Bullet bullet = new Bullet(this.getX(), this.getY(), 7, this.getVertexBufferObjectManager(), BULLET_DAMAGE, new Color(0, 255, 0));
+        Bullet bullet = new Bullet(this.getX() + 10, this.getY() + (this.getWidth() / 2) - 4, 7, this.getVertexBufferObjectManager(), BULLET_DAMAGE, new Color(0, 255, 0));
         bullet.setVelocityX(-400);
-        super.addBullet(bullet);
+        addBullet(bullet);
         GameUtil.attatchToScene(bullet);
     }
 
