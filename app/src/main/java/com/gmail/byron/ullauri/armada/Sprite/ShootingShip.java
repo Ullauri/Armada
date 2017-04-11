@@ -1,4 +1,6 @@
-package com.gmail.byron.ullauri.armada;
+package com.gmail.byron.ullauri.armada.sprite;
+
+import com.gmail.byron.ullauri.armada.GameUtil;
 
 import org.andengine.engine.Engine.EngineLock;
 import org.andengine.entity.sprite.AnimatedSprite;
@@ -6,7 +8,6 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -14,13 +15,29 @@ public abstract class ShootingShip extends AnimatedSprite {
     private final int FIRE_RATE;
     private final List<Bullet> bullets;
     private double hp = 100;
+    private float shootingPointXOffSet, shootingPointYOffSet;
 
 
-    ShootingShip(float x, float y, TiledTextureRegion textureRegion,
-                 VertexBufferObjectManager vertexBufferObjectManager, int fireRate) {
+    public ShootingShip(float x, float y, float shootingPointXOffSet, float shootingPointYOffSet, TiledTextureRegion textureRegion,
+                        VertexBufferObjectManager vertexBufferObjectManager, int fireRate) {
         super(x, y, textureRegion, vertexBufferObjectManager);
+        this.shootingPointXOffSet = shootingPointXOffSet;
+        this.shootingPointYOffSet = shootingPointYOffSet;
         FIRE_RATE = fireRate;
         this.bullets = new ArrayList<>();
+    }
+
+    public void setShootingPointOffSet(float x, float y) {
+        shootingPointXOffSet = x;
+        shootingPointYOffSet = y;
+    }
+
+    public float getShootingPointX() {
+        return this.getX() + shootingPointXOffSet;
+    }
+
+    public float getShootingPointY() {
+        return this.getY() + shootingPointYOffSet;
     }
 
     public void setHp(double hp) {
@@ -31,8 +48,16 @@ public abstract class ShootingShip extends AnimatedSprite {
         return hp;
     }
 
+//    public void shot(double bulletDamage) {
+//        hp -= bulletDamage;
+//    }
+
+    public void hit(double damage) {
+        hp -= damage;
+    }
+
     public List<Bullet> getBullets() {
-        return Collections.unmodifiableList(bullets);
+        return bullets;
     }
 
     public void addBullet(Bullet bullet) {
@@ -43,15 +68,10 @@ public abstract class ShootingShip extends AnimatedSprite {
         final EngineLock engineLock = GameUtil.getEngineLock();
         engineLock.lock();
 
-        bullets.remove(bullet);
         GameUtil.detachFromScene(bullet);
-        bullet.dispose();
+//        bullet.dispose();
 
         engineLock.unlock();
-    }
-
-    public void shot(double bulletDamage) {
-        hp -= bulletDamage;
     }
 
     public void update() {
@@ -61,6 +81,8 @@ public abstract class ShootingShip extends AnimatedSprite {
             Bullet furthestBullet = bullets.get(0);
             if (GameUtil.isOutOfBounds(furthestBullet.getX(), furthestBullet.getY()))
                 removeBullet(furthestBullet);
+
+//            System.out.println("BULLETS SIZE: " + getBullets().size());
         }
     }
 

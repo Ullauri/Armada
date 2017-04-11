@@ -1,4 +1,6 @@
-package com.gmail.byron.ullauri.armada;
+package com.gmail.byron.ullauri.armada.sprite;
+
+import com.gmail.byron.ullauri.armada.GameUtil;
 
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
@@ -7,12 +9,15 @@ import org.andengine.util.color.Color;
 
 
 public class PlayerShip extends ShootingShip {
-    public static final double BULLET_DAMAGE = -5;
+    public static final double BULLET_DAMAGE = 5;
+    public static final float BULLET_SIZE = 7;
     public static final int FIRE_RATE = 3;
 
 
-    PlayerShip(float x, float y, TiledTextureRegion textureRegion, VertexBufferObjectManager vertexBufferObjectManager) {
-        super(x, y, textureRegion, vertexBufferObjectManager, FIRE_RATE);
+    public PlayerShip(float shootingPointXOffSet, float shootingPointYOffSet, TiledTextureRegion textureRegion,
+                      VertexBufferObjectManager vertexBufferObjectManager) {
+        super((GameUtil.CAMERA_WIDTH) - textureRegion.getHeight(), (GameUtil.CAMERA_HEIGHT / 2) - (textureRegion.getWidth() / 2),
+                shootingPointXOffSet, shootingPointYOffSet, textureRegion, vertexBufferObjectManager, FIRE_RATE);
     }
 
     @Override
@@ -31,7 +36,7 @@ public class PlayerShip extends ShootingShip {
 
     @Override
     public void shoot() {
-        Bullet bullet = new Bullet(this.getX() + 10, this.getY() + (this.getWidth() / 2) - 4, 7, this.getVertexBufferObjectManager(), BULLET_DAMAGE, new Color(0, 255, 0));
+        Bullet bullet = new Bullet(this.getShootingPointX(), this.getShootingPointY(), BULLET_SIZE, this.getVertexBufferObjectManager(), BULLET_DAMAGE, new Color(0, 255, 0));
         bullet.setVelocityX(-400);
         addBullet(bullet);
         GameUtil.attatchToScene(bullet);

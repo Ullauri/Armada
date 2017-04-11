@@ -1,4 +1,4 @@
-package com.gmail.byron.ullauri.armada;
+package com.gmail.byron.ullauri.armada.sprite;
 
 import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.primitive.Rectangle;
@@ -7,6 +7,7 @@ import org.andengine.util.color.Color;
 
 
 public final class Bullet extends Rectangle {
+    private double damage;
     private PhysicsHandler physicsHandler;
 
 
@@ -16,10 +17,19 @@ public final class Bullet extends Rectangle {
 
     Bullet(float x, float y, float width, float height, VertexBufferObjectManager vertexBufferObjectManager, double damage, Color color) {
         super(x, y, width, height, vertexBufferObjectManager);
+        setDamage(damage);
         this.setColor(color);
 
         physicsHandler = new PhysicsHandler(this);
         this.registerUpdateHandler(physicsHandler);
+    }
+
+    public void setDamage(double damage) {
+        this.damage = damage;
+    }
+
+    public double getDamage() {
+        return damage;
     }
 
     public void setVelocityX(float velocityX) {

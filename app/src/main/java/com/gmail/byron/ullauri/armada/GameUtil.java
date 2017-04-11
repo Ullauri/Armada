@@ -1,6 +1,8 @@
 package com.gmail.byron.ullauri.armada;
 
 
+import com.gmail.byron.ullauri.armada.sprite.PlayerShip;
+
 import org.andengine.engine.Engine.EngineLock;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.scene.Scene;
@@ -9,6 +11,11 @@ import java.util.Random;
 
 public final class GameUtil {
     public static final int CAMERA_WIDTH = 720, CAMERA_HEIGHT = 480;
+    private static final int[] ENEMIES_PER_WAVE = {
+            3,
+            5,
+            7
+    };
     private static Random random = new Random();
     private static int frameCount, enemyCount;
     private static int wave;
@@ -26,7 +33,7 @@ public final class GameUtil {
         player = pPlayer;
         frameCount = 0;
         enemyCount = 0;
-        wave = 1;
+        wave = 0;
     }
 
     public static EngineLock getEngineLock() {
@@ -34,12 +41,10 @@ public final class GameUtil {
     }
 
     public static void attatchToScene(IEntity entity) {
-        if (entity instanceof EnemyShip) enemyCount++; // ***
         scene.attachChild(entity);
     }
 
     public static void detachFromScene(IEntity entity) {
-        if (entity instanceof EnemyShip) enemyCount--; // ***
         scene.detachChild(entity);
     }
 
@@ -51,12 +56,14 @@ public final class GameUtil {
         return position;
     }
 
-    public static void update() {
+    public static void update(int pEnemyCount) {
         if (frameCount >= 1500) {
             frameCount = 0;
-            wave++;
+            if (wave < ENEMIES_PER_WAVE.length) wave++;
         } else
             frameCount++;
+
+        enemyCount = pEnemyCount;
     }
 
     public static int nextInt(int bound) {
@@ -72,7 +79,10 @@ public final class GameUtil {
     }
 
     public static boolean isOutOfBounds(float x, float y) {
-        return (x < -10 || y < -10 || x > CAMERA_WIDTH + 10 || y > CAMERA_HEIGHT + 10);
+        return (x < 0 || y < 0 || x > CAMERA_WIDTH || y > CAMERA_HEIGHT);
     }
 
+    public static boolean enemyShortage() {
+        return enemyCount < ENEMIES_PER_WAVE[wave];
+    }
 }
