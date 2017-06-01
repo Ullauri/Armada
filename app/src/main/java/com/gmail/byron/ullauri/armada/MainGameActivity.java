@@ -25,6 +25,7 @@ import org.andengine.util.debug.Debug;
 
 
 public class MainGameActivity extends SimpleBaseGameActivity {
+    private GameUtil gameUtil = GameUtil.INSTANCE;
     private BuildableBitmapTextureAtlas spriteTextureAtlas;
     private TiledTextureRegion playerShipTextureRegion;
     private EnemyBank enemyBank = new EnemyBank();
@@ -106,7 +107,7 @@ public class MainGameActivity extends SimpleBaseGameActivity {
 
         scene = new LevelScene(vertexBufferObjectManager, playerShip, enemyBank);
         scene.setBackground(new Background(0.09804f, 0.6274f, 0.8784f));
-        GameUtil.initScene(scene, engineLock, playerShip);
+        gameUtil.initScene(scene, engineLock, playerShip);
         return scene;
     }
 

@@ -10,6 +10,10 @@ import org.andengine.entity.scene.Scene;
 import java.util.Random;
 
 public enum GameUtil {
+    /*
+        Must be initialized in a SimpleBaseGameActivity class (MainGameActivity) after a LevelScene
+        is created in onCreateScene.
+     */
     INSTANCE;
 
     public static final int CAMERA_WIDTH = 720, CAMERA_HEIGHT = 480;
