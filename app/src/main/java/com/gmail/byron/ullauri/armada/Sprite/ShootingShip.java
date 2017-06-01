@@ -12,18 +12,19 @@ import java.util.List;
 
 
 public abstract class ShootingShip extends AnimatedSprite {
+    protected GameUtil gameUtil = GameUtil.INSTANCE;
     private final int FIRE_RATE;
+    // Positions bullets when shooting
+    private float shootingPointXOffSet, shootingPointYOffSet;
     private final List<Bullet> bullets;
     private double hp = 100;
-    private float shootingPointXOffSet, shootingPointYOffSet;
 
 
-    public ShootingShip(float x, float y, float shootingPointXOffSet, float shootingPointYOffSet, TiledTextureRegion textureRegion,
-                        VertexBufferObjectManager vertexBufferObjectManager, int fireRate) {
+    ShootingShip(float x, float y, float shootingPointXOffSet, float shootingPointYOffSet, TiledTextureRegion textureRegion,
+                 VertexBufferObjectManager vertexBufferObjectManager, int fireRate) {
         super(x, y, textureRegion, vertexBufferObjectManager);
-        this.shootingPointXOffSet = shootingPointXOffSet;
-        this.shootingPointYOffSet = shootingPointYOffSet;
         FIRE_RATE = fireRate;
+        setShootingPointOffSet(shootingPointXOffSet, shootingPointYOffSet);
         this.bullets = new ArrayList<>();
     }
 
@@ -48,10 +49,6 @@ public abstract class ShootingShip extends AnimatedSprite {
         return hp;
     }
 
-//    public void shot(double bulletDamage) {
-//        hp -= bulletDamage;
-//    }
-
     public void hit(double damage) {
         hp -= damage;
     }
@@ -65,28 +62,25 @@ public abstract class ShootingShip extends AnimatedSprite {
     }
 
     public void removeBullet(Bullet bullet) {
-        final EngineLock engineLock = GameUtil.getEngineLock();
+        final EngineLock engineLock = gameUtil.getEngineLock();
         engineLock.lock();
 
-        GameUtil.detachFromScene(bullet);
-//        bullet.dispose();
+        gameUtil.detachFromScene(bullet);
 
         engineLock.unlock();
     }
 
     public void update() {
-        if (GameUtil.inSync(FIRE_RATE)) {
-            shoot();
+        if (!gameUtil.isOutOfBounds(this.getX(), this.getY())) {
+            if (gameUtil.inSync(FIRE_RATE)) {
+                shoot();
 
-            Bullet furthestBullet = bullets.get(0);
-            if (GameUtil.isOutOfBounds(furthestBullet.getX(), furthestBullet.getY()))
-                removeBullet(furthestBullet);
-
-//            System.out.println("BULLETS SIZE: " + getBullets().size());
+                Bullet furthestBullet = bullets.get(0);
+                if (gameUtil.isOutOfBounds(furthestBullet.getX(), furthestBullet.getY()))
+                    removeBullet(furthestBullet);
+            }
         }
     }
-
-    public abstract void shoot();
 
     @Override
     public String toString() {
@@ -97,4 +91,5 @@ public abstract class ShootingShip extends AnimatedSprite {
                 + "\nY: " + this.getY();
     }
 
+    public abstract void shoot();
 }

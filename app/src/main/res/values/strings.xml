@@ -8,5 +8,8 @@
     <string name="text_about_button">About</string>
     <string name="description_icon">icon</string>
     <string name="title_activity_main_game">mainGameActivity</string>
+    <string name="text_about">A shoot-em up game made using
+        <a href="https://github.com/nicolasgramlich/AndEngine">AndEngine</a> by Nicolas Gramlich\n\nSource Code: <a href="https://github.com/Ullauri/Armada">Armada</a>
+    </string>
 
 </resources>

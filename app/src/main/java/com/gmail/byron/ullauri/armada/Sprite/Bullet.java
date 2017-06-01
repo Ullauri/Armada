@@ -18,10 +18,10 @@ public final class Bullet extends Rectangle {
     Bullet(float x, float y, float width, float height, VertexBufferObjectManager vertexBufferObjectManager, double damage, Color color) {
         super(x, y, width, height, vertexBufferObjectManager);
         setDamage(damage);
-        this.setColor(color);
+        setColor(color);
 
         physicsHandler = new PhysicsHandler(this);
-        this.registerUpdateHandler(physicsHandler);
+        registerUpdateHandler(physicsHandler);
     }
 
     public void setDamage(double damage) {
@@ -34,10 +34,6 @@ public final class Bullet extends Rectangle {
 
     public void setVelocityX(float velocityX) {
         physicsHandler.setVelocityX(velocityX);
-    }
-
-    public void setVelocityY(float velocityY) {
-        physicsHandler.setVelocityY(velocityY);
     }
 
     public void setVelocity(float velocityX, float velocityY) {

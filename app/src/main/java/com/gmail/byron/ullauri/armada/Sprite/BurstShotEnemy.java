@@ -8,6 +8,8 @@ import org.andengine.util.color.Color;
 
 public class BurstShotEnemy extends EnemyShip {
     public static final double BULLET_DAMAGE = 10;
+    // First two indexes: /\ burst shot
+    // 0 is placed last for the middle bullet in the /|\ burst shot
     public static final float[] BURST_DIRECTIONS_Y = {-80, 80, 0};
 
 
@@ -23,8 +25,7 @@ public class BurstShotEnemy extends EnemyShip {
             Bullet bullet = new Bullet(this.getShootingPointX(), this.getShootingPointY(), 9, this.getVertexBufferObjectManager(), BULLET_DAMAGE, new Color(0, 0, 5));
             bullet.setVelocity(250, BURST_DIRECTIONS_Y[i]);
             addBullet(bullet);
-            GameUtil.attatchToScene(bullet);
+            gameUtil.attatchToScene(bullet);
         }
     }
-
 }

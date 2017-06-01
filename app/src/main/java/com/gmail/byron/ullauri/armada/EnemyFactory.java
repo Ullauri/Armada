@@ -8,7 +8,7 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.color.Color;
 
-public class EnemyFactory {
+public final class EnemyFactory {
     private static final int X_OFFSET = 235, Y_OFFSET = 150;
     private static final int VELOCITY_X_MIN = 50, VELOCITY_X_MAX = 125;
     private static final int VELOCITY_Y_MIN = 50, VELOCITY_Y_MAX = 125;
@@ -19,9 +19,9 @@ public class EnemyFactory {
     private EnemyFactory() {
     }
 
-    public static EnemyShip createEnemy(VertexBufferObjectManager vertexBufferObjectManager,
-                                        TiledTextureRegion enemyFaceTextureRegion, float shootingPointXOffSet,
-                                        float shootingPointYOffSet, float scale, Color color) {
+    public static EnemyShip createEnemy(float shootingPointXOffSet, float shootingPointYOffSet,
+                                        TiledTextureRegion enemyFaceTextureRegion, VertexBufferObjectManager vertexBufferObjectManager,
+                                        float scale, Color color) {
         float x = -GameUtil.nextFloat(X_OFFSET) - X_OFFSET;
         float y = GameUtil.nextFloat(GameUtil.CAMERA_HEIGHT - Y_OFFSET);
         int velocityX = GameUtil.nextInt(VELOCITY_X_MAX - VELOCITY_X_MIN) + VELOCITY_X_MIN;
@@ -50,5 +50,4 @@ public class EnemyFactory {
 
         return enemyShip;
     }
-
 }

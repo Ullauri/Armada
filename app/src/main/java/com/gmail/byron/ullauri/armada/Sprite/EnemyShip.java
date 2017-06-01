@@ -36,10 +36,10 @@ public abstract class EnemyShip extends ShootingShip {
     }
 
     public void destroyed() {
-        final Engine.EngineLock engineLock = GameUtil.getEngineLock();
+        final Engine.EngineLock engineLock = gameUtil.getEngineLock();
         engineLock.lock();
 
-        GameUtil.detachFromScene(this);
+        gameUtil.detachFromScene(this);
         dispose();
 
         engineLock.unlock();

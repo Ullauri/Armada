@@ -9,25 +9,32 @@ import org.andengine.entity.scene.Scene;
 
 import java.util.Random;
 
-public final class GameUtil {
+public enum GameUtil {
+    INSTANCE;
+
     public static final int CAMERA_WIDTH = 720, CAMERA_HEIGHT = 480;
     private static final int[] ENEMIES_PER_WAVE = {
             3,
             5,
             7
     };
-    private static Random random = new Random();
-    private static int frameCount, enemyCount;
-    private static int wave;
-    private static PlayerShip player;
-    private static Scene scene;
-    private static EngineLock engineLock;
+    private static Random RANDOM = new Random();
 
-
-    private GameUtil() {
+    public static int nextInt(int bound) {
+        return RANDOM.nextInt(bound);
     }
 
-    public static void initScene(Scene pScene, EngineLock pEngineLock, PlayerShip pPlayer) {
+    public static float nextFloat(float bound) {
+        return RANDOM.nextFloat() * bound;
+    }
+
+    private int frameCount, enemyCount;
+    private int wave;
+    private PlayerShip player;
+    private Scene scene;
+    private EngineLock engineLock;
+
+    public void initScene(Scene pScene, EngineLock pEngineLock, PlayerShip pPlayer) {
         scene = pScene;
         engineLock = pEngineLock;
         player = pPlayer;
@@ -36,19 +43,19 @@ public final class GameUtil {
         wave = 0;
     }
 
-    public static EngineLock getEngineLock() {
+    public EngineLock getEngineLock() {
         return engineLock;
     }
 
-    public static void attatchToScene(IEntity entity) {
+    public void attatchToScene(IEntity entity) {
         scene.attachChild(entity);
     }
 
-    public static void detachFromScene(IEntity entity) {
+    public void detachFromScene(IEntity entity) {
         scene.detachChild(entity);
     }
 
-    public static float[] getPlayerPosition() {
+    public float[] getPlayerPosition() {
         float[] position = new float[2];
         position[0] = player.getX();
         position[1] = player.getY();
@@ -56,7 +63,7 @@ public final class GameUtil {
         return position;
     }
 
-    public static void update(int pEnemyCount) {
+    public void update(int pEnemyCount) {
         if (frameCount >= 1500) {
             frameCount = 0;
             if (wave < ENEMIES_PER_WAVE.length) wave++;
@@ -66,23 +73,15 @@ public final class GameUtil {
         enemyCount = pEnemyCount;
     }
 
-    public static int nextInt(int bound) {
-        return random.nextInt(bound);
-    }
-
-    public static float nextFloat(float bound) {
-        return random.nextFloat() * bound;
-    }
-
-    public static boolean inSync(int cycle) {
+    public boolean inSync(int cycle) {
         return frameCount % cycle == 0;
     }
 
-    public static boolean isOutOfBounds(float x, float y) {
+    public boolean isOutOfBounds(float x, float y) {
         return (x < 0 || y < 0 || x > CAMERA_WIDTH || y > CAMERA_HEIGHT);
     }
 
-    public static boolean enemyShortage() {
+    public boolean enemyShortage() {
         return enemyCount < ENEMIES_PER_WAVE[wave];
     }
 }

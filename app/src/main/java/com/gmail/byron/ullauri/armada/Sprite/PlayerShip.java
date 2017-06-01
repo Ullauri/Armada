@@ -9,9 +9,9 @@ import org.andengine.util.color.Color;
 
 
 public class PlayerShip extends ShootingShip {
-    public static final double BULLET_DAMAGE = 5;
-    public static final float BULLET_SIZE = 7;
-    public static final int FIRE_RATE = 3;
+    private static final double BULLET_DAMAGE = 5;
+    private static final float BULLET_SIZE = 7;
+    private static final int FIRE_RATE = 3;
 
 
     public PlayerShip(float shootingPointXOffSet, float shootingPointYOffSet, TiledTextureRegion textureRegion,
@@ -27,6 +27,7 @@ public class PlayerShip extends ShootingShip {
         super.onManagedUpdate(pSecondsElapsed);
     }
 
+    // Dragging Player Ship
     @Override
     public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
         this.setPosition(pSceneTouchEvent.getX() - this.getWidth() / 2, pSceneTouchEvent.getY() - this.getHeight() / 2);
@@ -39,7 +40,7 @@ public class PlayerShip extends ShootingShip {
         Bullet bullet = new Bullet(this.getShootingPointX(), this.getShootingPointY(), BULLET_SIZE, this.getVertexBufferObjectManager(), BULLET_DAMAGE, new Color(0, 255, 0));
         bullet.setVelocityX(-400);
         addBullet(bullet);
-        GameUtil.attatchToScene(bullet);
+        gameUtil.attatchToScene(bullet);
     }
 
 }

@@ -1,7 +1,5 @@
 package com.gmail.byron.ullauri.armada.sprite;
 
-import com.gmail.byron.ullauri.armada.GameUtil;
-
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.color.Color;
@@ -17,7 +15,7 @@ public class SingleShotEnemy extends EnemyShip {
 
     private float[] aim() {
         float[] aimXY = new float[2];
-        float[] playerXY = GameUtil.getPlayerPosition();
+        float[] playerXY = gameUtil.getPlayerPosition();
 
         aimXY[0] = playerXY[0] - this.getX();
         aimXY[1] = playerXY[1] - this.getY();
@@ -25,15 +23,13 @@ public class SingleShotEnemy extends EnemyShip {
         return aimXY;
     }
 
-
     @Override
     public void shoot() {
         Bullet bullet = new Bullet(this.getShootingPointX(), this.getShootingPointY(), 9, this.getVertexBufferObjectManager(), BULLET_DAMAGE, new Color(0, 255, 0));
         float[] target = aim();
         bullet.setVelocity(target[0], target[1]);
-//        bullet.setVelocityX(300);
         addBullet(bullet);
-        GameUtil.attatchToScene(bullet);
+        gameUtil.attatchToScene(bullet);
     }
 
 }

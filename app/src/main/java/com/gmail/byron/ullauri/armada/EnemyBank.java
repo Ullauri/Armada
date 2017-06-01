@@ -8,41 +8,11 @@ import java.util.List;
 
 
 public class EnemyBank {
-    public class Enemy {
-        private final TiledTextureRegion textureRegion;
-        private final float[] shootingPointOffSet;
-        private final float scale;
-        private final Color[] colors;
-
-        Enemy(TiledTextureRegion textureRegion, float[] shootingPointOffSet, float scale, Color[] colors) {
-            this.textureRegion = textureRegion;
-            this.shootingPointOffSet = shootingPointOffSet;
-            this.scale = scale;
-            this.colors = colors;
-        }
-
-        public TiledTextureRegion getTextureRegion() {
-            return textureRegion;
-        }
-
-        public float[] getShootingPointOffSet() {
-            return shootingPointOffSet;
-        }
-
-        public float getScale() {
-            return scale;
-        }
-
-        public Color[] getColors() {
-            return colors;
-        }
-
-        public Color getColor(int colorIndex) {
-            return colors[colorIndex];
-        }
-
-    }
-
+    /*
+        Holds sprite and sprite info for each Enemy used in a LevelScene.
+        Used to spawn random enemies during an enemy shortage (LevelScene: onManagedUpdate() )
+        using EnemyFactory
+     */
     private final List<Enemy> enemies;
 
 
@@ -75,6 +45,40 @@ public class EnemyBank {
 
     public int size() {
         return enemies.size();
+    }
+
+    protected class Enemy {
+        private final TiledTextureRegion textureRegion;
+        private final float[] shootingPointOffSet;
+        private final float scale;
+        private final Color[] colors;
+
+        Enemy(TiledTextureRegion textureRegion, float[] shootingPointOffSet, float scale, Color[] colors) {
+            this.textureRegion = textureRegion;
+            this.shootingPointOffSet = shootingPointOffSet;
+            this.scale = scale;
+            this.colors = colors;
+        }
+
+        public TiledTextureRegion getTextureRegion() {
+            return textureRegion;
+        }
+
+        public float[] getShootingPointOffSet() {
+            return shootingPointOffSet;
+        }
+
+        public float getScale() {
+            return scale;
+        }
+
+        public Color[] getColors() {
+            return colors;
+        }
+
+        public Color getColor(int colorIndex) {
+            return colors[colorIndex];
+        }
     }
 
 }
