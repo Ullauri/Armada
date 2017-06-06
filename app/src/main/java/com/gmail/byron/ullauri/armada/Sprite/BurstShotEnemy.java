@@ -19,7 +19,8 @@ public class BurstShotEnemy extends EnemyShip {
 
     @Override
     public void shoot() {
-        int burstCount = GameUtil.nextInt(BURST_DIRECTIONS_Y.length - 1) + 1;
+        int burstCount = GameUtil.nextInt(BURST_DIRECTIONS_Y.length - 1);
+        if (burstCount == 0) burstCount++;
 
         for (int i = 0; i <= burstCount; i++) {
             Bullet bullet = new Bullet(this.getShootingPointX(), this.getShootingPointY(), 9, this.getVertexBufferObjectManager(), BULLET_DAMAGE, new Color(0, 0, 5));
